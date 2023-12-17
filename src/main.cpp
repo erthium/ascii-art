@@ -73,6 +73,7 @@ class ASCII_Converter {
 
             // get the width and height of the image
             SDL_QueryTexture(image, NULL, NULL, &width, &height);
+            
             width /= 2;
             height /= 2;
             SDL_SetWindowSize(window, width, height);
@@ -163,8 +164,8 @@ class ASCII_Converter {
 #define PATH_1 "assets/test.png"
 
 // density tables
-#define DENSITY_TABLE_1 ""
-
+#define DENSITY_TABLE_1 "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. "
+#define DENSITY_TABLE_2 " .:-=+*#%@"
 
 ASCII_Converter *converter = nullptr;
 int main(){
