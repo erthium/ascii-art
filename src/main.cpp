@@ -73,10 +73,8 @@ class ASCII_Converter {
 
             // get the width and height of the image
             SDL_QueryTexture(image, NULL, NULL, &width, &height);
-
-            cout << "Image width: " << width << endl;
-            cout << "Image height: " << height << endl;
-
+            width /= 2;
+            height /= 2;
             SDL_SetWindowSize(window, width, height);
 
             cout << "Game initialized." << endl;
@@ -162,7 +160,7 @@ class ASCII_Converter {
 
 
 // images to convert
-#define PATH_1 "assets/test.png/"
+#define PATH_1 "assets/test.png"
 
 // density tables
 #define DENSITY_TABLE_1 ""
