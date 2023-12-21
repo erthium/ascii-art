@@ -9,14 +9,12 @@ SDL_Texture* texture = IMG_LoadTexture(renderer, path.c_str());
 */
 
 // images to convert
-#define PATH_1 "assets/images/ww.png"
+#define PATH_1 "assets/images/spider.png"
 
 // density tables
 static string DENSITY_TABLE_1 = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. ";
 static string DENSITY_TABLE_2 = " .:-=+*#%@";
 
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 800
 
 ASCII_Converter *converter = nullptr;
 int main(){

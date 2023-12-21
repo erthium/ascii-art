@@ -1,6 +1,6 @@
 CC := g++
 CFLAGS := -Wall -std=c++11 -I/usr/include/SDL2
-LDFLAGS := -lSDL2 -lSDL2_image
+LDFLAGS := -lsfml-graphics -lsfml-window -lsfml-system
 
 SRC_DIR := src
 OBJ_DIR := build

@@ -4,9 +4,8 @@
 #include <string>
 #include <fstream>
 
-#include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_timer.h>
+#include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
 
 using namespace std;
 
@@ -15,8 +14,7 @@ class ASCII_Converter {
         // window Rendering
         int width;
         int height;
-        SDL_Window* window = nullptr;
-        SDL_Renderer* renderer = nullptr;
+        sf::RenderWindow window;
 
         // game Loop
         bool quit = false;
@@ -24,8 +22,8 @@ class ASCII_Converter {
 
         // game state
         string density_table;
-        SDL_Texture* image = nullptr;
-        SDL_Texture* ascii_image = nullptr;
+        sf::Texture image;
+        sf::Texture ascii_image;
     
     public: // public variables
 
@@ -35,6 +33,6 @@ class ASCII_Converter {
         void handle_events();
         void render();
         void show();
-        SDL_Texture* load_texture(string path);
-        SDL_Texture* convert(SDL_Texture* texture);
+        sf::Texture load_texture(string path);
+        sf::Texture convert(sf::Texture texture);
 };
