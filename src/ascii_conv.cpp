@@ -24,7 +24,7 @@ ASCII_Converter::ASCII_Converter(string density_table, string path){
         cout << "Error initializing SDL: " << SDL_GetError() << endl;
     }
     window = SDL_CreateWindow(
-        "Chess",
+        "ASCII Converter",
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
         1000,
@@ -35,6 +35,7 @@ ASCII_Converter::ASCII_Converter(string density_table, string path){
 
     this->density_table = density_table;
     image = load_texture(path);
+    cout << SDL_GetError() << endl;
     ascii_image = convert(image);
 
     // get the width and height of the image
@@ -47,12 +48,14 @@ ASCII_Converter::ASCII_Converter(string density_table, string path){
     cout << "Game initialized." << endl;
 }
 
+
 ASCII_Converter::~ASCII_Converter(){
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     SDL_Quit();
     cout << "Game deconstructed." << endl;
 }
+
 
 void ASCII_Converter::handle_events(){
     // mouse events
@@ -84,6 +87,7 @@ void ASCII_Converter::handle_events(){
     }         
 }
 
+
 void ASCII_Converter::render(){
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
     SDL_RenderClear(renderer);
@@ -94,6 +98,7 @@ void ASCII_Converter::render(){
     SDL_RenderPresent(renderer);
 
 }
+
 
 void ASCII_Converter::show(){
     next_time = SDL_GetTicks() + TICK_INTERVAL;
@@ -111,9 +116,11 @@ void ASCII_Converter::show(){
     cout << "Closing the Game." << endl;
 }
 
+
 SDL_Texture* ASCII_Converter::load_texture(string path){
     return IMG_LoadTexture(renderer, path.c_str());
 }
+
 
 SDL_Texture* ASCII_Converter::convert(SDL_Texture* texture){
     
