@@ -12,8 +12,7 @@ using namespace std;
 class ASCII_Converter {
     private: // private variables
         // window Rendering
-        int width;
-        int height;
+        sf::Vector2u size;
         sf::RenderWindow window;
 
         // game Loop
@@ -23,7 +22,9 @@ class ASCII_Converter {
         // game state
         string density_table;
         sf::Texture image;
+        sf::Sprite image_s;
         sf::Texture ascii_image;
+        sf::Sprite ascii_image_s;
     
     public: // public variables
 

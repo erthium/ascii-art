@@ -7,15 +7,23 @@ int to_gray_scale(int r, int g, int b){
 
 
 ASCII_Converter::ASCII_Converter(string density_table, string path){
-    window.create(sf::VideoMode(800, 800), "ASCII Converter");
+    // open a floating/resizeable window
 
     this->density_table = density_table;
+
     image = load_texture(path);
+    image_s = sf::Sprite(image);
+    image_s.setPosition(0, 0);
+    image_s.setScale(0.5, 0.5);
+
     ascii_image = convert(image);
+    ascii_image_s = sf::Sprite(ascii_image);
 
-    // get the width and height of the image
+    size = image.getSize();
+    size.x = size.x / 2;
+    size.y = size.y / 2;
 
-    //SDL_SetWindowSize(window, width, height);
+    window.create(sf::VideoMode(size.x, size.y), "ASCII Converter", sf::Style::Titlebar);
 
     cout << "Game initialized." << endl;
 }
@@ -28,13 +36,12 @@ ASCII_Converter::~ASCII_Converter(){
 
 void ASCII_Converter::handle_events(){
     // mouse events
-    int mouse_x, mouse_y;
+    // int mouse_x, mouse_y;
     
     // SDL events
 
     sf::Event event;
-    while (window.pollEvent(event))
-    {
+    while (window.pollEvent(event)){
         // Close window: exit
         if (event.type == sf::Event::Closed){
             quit = true;
@@ -50,13 +57,13 @@ void ASCII_Converter::handle_events(){
                 break;
             }
         }
-    }       
+    }
 }
 
 
 void ASCII_Converter::render(){
     window.clear();
-
+    window.draw(image_s, sf::RenderStates::Default);
     window.display();
 }
 
