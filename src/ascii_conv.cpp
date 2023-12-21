@@ -7,24 +7,17 @@ int to_gray_scale(int r, int g, int b){
 
 
 ASCII_Converter::ASCII_Converter(string density_table, string path){
-    // open a floating/resizeable window
-
     this->density_table = density_table;
 
-    image = load_texture(path);
-    image_s = sf::Sprite(image);
+    image = load_image(path);
+    sf::Texture texture = load_texture(path);
+    image_s = sf::Sprite(texture);
     image_s.setPosition(0, 0);
-    image_s.setScale(0.5, 0.5);
 
-    ascii_image = convert(image);
-    ascii_image_s = sf::Sprite(ascii_image);
-
-    size = image.getSize();
-    size.x = size.x / 2;
-    size.y = size.y / 2;
+    size = texture.getSize();
 
     window.create(sf::VideoMode(size.x, size.y), "ASCII Converter", sf::Style::Titlebar);
-
+    
     cout << "Game initialized." << endl;
 }
 
@@ -63,7 +56,7 @@ void ASCII_Converter::handle_events(){
 
 void ASCII_Converter::render(){
     window.clear();
-    window.draw(image_s, sf::RenderStates::Default);
+    window.draw(image_s);
     window.display();
 }
 
@@ -85,15 +78,23 @@ void ASCII_Converter::show(){
 }
 
 
-sf::Texture ASCII_Converter::load_texture(string path){
-    sf::Texture texture;
-    if (!texture.loadFromFile(path)){
+sf::Image ASCII_Converter::load_image(string path){
+    sf::Image _image;
+    if (!_image.loadFromFile(path)){
         cout << "Error loading image." << endl;
     }
-    return texture;
+    return _image;
+}
+
+sf::Texture ASCII_Converter::load_texture(string path){
+    sf::Texture _texture;
+    if (!_texture.loadFromFile(path)){
+        cout << "Error loading texture." << endl;
+    }
+    return _texture;
 }
 
 
-sf::Texture ASCII_Converter::convert(sf::Texture texture){
+sf::Image ASCII_Converter::convert(sf::Image texture){
     return texture;
 }

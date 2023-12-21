@@ -21,10 +21,9 @@ class ASCII_Converter {
 
         // game state
         string density_table;
-        sf::Texture image;
+        sf::Image image;
         sf::Sprite image_s;
-        sf::Texture ascii_image;
-        sf::Sprite ascii_image_s;
+
     
     public: // public variables
 
@@ -34,6 +33,7 @@ class ASCII_Converter {
         void handle_events();
         void render();
         void show();
+        sf::Image load_image(string path);
         sf::Texture load_texture(string path);
-        sf::Texture convert(sf::Texture texture);
+        sf::Image convert(sf::Image texture);
 };
