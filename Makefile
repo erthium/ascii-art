@@ -11,6 +11,8 @@ SRC := $(wildcard $(SRC_DIR)/*.cpp)
 OBJ := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 EXECUTABLE := $(BIN_DIR)/ascii.art
 
+P=assets/images/ww.png
+
 .PHONY: all clean run
 
 all: clean $(EXECUTABLE)
@@ -26,7 +28,7 @@ clean:
 	rm -f $(OBJ_DIR)/*.o $(EXECUTABLE)
 
 run: $(EXECUTABLE)
-	./$(EXECUTABLE)
+	./$(EXECUTABLE) $(P)
 
 ship: $(EXECUTABLE)
 	@mkdir -p $(STABLE_DIR)
