@@ -8,7 +8,7 @@ BIN_DIR := bin
 
 SRC := $(wildcard $(SRC_DIR)/*.cpp)
 OBJ := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
-EXECUTABLE := $(BIN_DIR)/test
+EXECUTABLE := $(BIN_DIR)/ascii.art
 
 .PHONY: all clean run
 
@@ -26,4 +26,3 @@ clean:
 
 run: $(EXECUTABLE)
 	./$(EXECUTABLE)
-
