@@ -4,36 +4,36 @@
 #include <string>
 #include <fstream>
 
-#include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
 using namespace std;
 
 class ASCII_Converter {
     private: // private variables
-        // window Rendering
+        // Rendering
         sf::Vector2u size;
         sf::RenderWindow window;
+        sf::RenderTexture render_texture;
+        sf::Font font;
 
-        // game Loop
+        // Loop
         bool quit = false;
         bool restart = false;
 
-        // game state
+        // States
         string density_table;
+        sf::Texture texture;
         sf::Image image;
-        sf::Sprite image_s;
+        sf::Sprite sprite;
+        sf::Texture ascii_texture;
 
-    
     public: // public variables
 
     public: // public methods
-        ASCII_Converter(string density_table, string path);
+        ASCII_Converter(string density_table, string image_path, string font_path);
         ~ASCII_Converter();
         void handle_events();
         void render();
-        void show();
-        sf::Image load_image(string path);
-        sf::Texture load_texture(string path);
-        sf::Image convert(sf::Image texture);
+        void loop();
+        void convert(int length, bool reverse_table = false);
 };
