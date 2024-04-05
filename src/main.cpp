@@ -9,7 +9,7 @@ SDL_Texture* texture = IMG_LoadTexture(renderer, path.c_str());
 */
 
 // images to convert
-#define PATH_1 "assets/images/spider.png"
+#define TEST_IMAGE_PATH "assets/images/spider.png"
 #define FONT_PATH "assets/fonts/mono_regular.ttf" 
 
 // density tables
