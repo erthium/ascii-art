@@ -22,6 +22,7 @@ class ASCII_Converter {
 
         // States
         string density_table;
+        string image_path;
         sf::Texture texture;
         sf::Image image;
         sf::Sprite sprite;
@@ -36,4 +37,5 @@ class ASCII_Converter {
         void render();
         void loop();
         void convert(int length, bool reverse_table = false);
+        void save();
 };

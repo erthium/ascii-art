@@ -8,8 +8,7 @@ int to_gray_scale(int r, int g, int b) {
 
 ASCII_Converter::ASCII_Converter(string density_table, string image_path, string font_path) {
     this->density_table = density_table;
-    // reverse the density table
-    
+    this->image_path = image_path;    
 
     if (!texture.loadFromFile(image_path)) {
         cout << "Error loading image." << endl;
@@ -54,6 +53,9 @@ void ASCII_Converter::handle_events() {
             {
             case sf::Keyboard::R:
                 restart = true;
+                break;
+            case sf::Keyboard::S:
+                save();
                 break;
             default:
                 break;
@@ -131,4 +133,34 @@ void ASCII_Converter::convert(int length, bool reverse_table) {
     render_texture.display();
     ascii_texture = render_texture.getTexture();
     sprite.setTexture(ascii_texture);
+}
+
+void ASCII_Converter::save() {
+    // check if the file exists
+    if (image_path == ""){
+        cout << "No image path provided, image cannot be saved." << endl;
+        return;
+    }
+    string path = image_path;
+    // remove the extension and add .png
+    path = path.substr(0, path.find_last_of("."));
+    short i = 0;
+    path += "_ascii_" + to_string(i) + ".png";
+    while (ifstream(path)){
+        i++;
+        path = path.substr(0, path.find_last_of("_") + 1) + to_string(i) + ".png";
+    }
+    // save the image with the black background
+    // give black background
+    sf::Image ascii_image = ascii_texture.copyToImage();
+    for (size_t i = 0; i < ascii_image.getSize().x; i++){
+        for (size_t j = 0; j < ascii_image.getSize().y; j++){
+            sf::Color color = ascii_image.getPixel(i, j);
+            if (color.a == 0){
+                ascii_image.setPixel(i, j, sf::Color::Black);
+            }
+        }
+    }
+    ascii_image.saveToFile(path);
+    cout << "Image saved to " << path << endl;
 }
